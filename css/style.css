@@ -146,6 +146,11 @@ i:hover {
   background: rgba(128,128,128, .1);
 }
 
+.single-chat:active,
+.single-chat:focus {
+  background: rgba(128,128,128, .5);
+}
+
 
 .single-chat .circle-box {
   margin-right: 8px;
@@ -169,9 +174,72 @@ i:hover {
   background: #eaeaea;
 }
 
+.currentChat-user {
+  flex-wrap: wrap;
+}
+
+.currentChat-user .time {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.currentChat-user .time span {
+  font-size: 12px;
+}
+
+/* Messaggi chat */
 .content-main {
   flex-grow: 1;
   background-image: url('../img/mine.jpg');
+  padding: 20px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.message-sent {
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: lightgreen;
+  border-radius: 5px;
+}
+
+.message-sent p {
+  margin-right: 50px;
+  padding-bottom: 5px;
+}
+
+.message-sent span {
+  font-size: 10px;
+  text-align: right;
+}
+
+.message-received {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+
+}
+
+.message-received p {
+  margin-right: 50px;
+  padding-bottom: 5px;
+}
+
+.message-received span {
+  font-size: 10px;
+  text-align: left;
 }
 
 /* FOOTER */

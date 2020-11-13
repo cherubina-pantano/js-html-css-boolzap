@@ -43,7 +43,9 @@
           <div class="chats">
 
             <ul class="chats-list">
-              <li class="single-chat" v-for="(contact, index) in contacts" @click="chageUserChat(index)">
+              <li class="single-chat"
+                v-for="(contact, index) in contacts"
+                @click="chageUserChat(index)">
                 <div class="circle-box">
                   <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="">
                 </div>
@@ -61,8 +63,13 @@
             <div class="circle-box">
               <img :src="'./img/avatar' + contacts[currentUserIndex].avatar + '.jpg'" alt="">
             </div>
-            <span> {{ contacts[currentUserIndex].name }} </span>
+            <div class="time">
+             <h4> {{ contacts[currentUserIndex].name }} </h4>
+             <span>Ultimo accesso oggi alle 10.35</span>
+            </div>
+
           </div>
+
           <div class="icons">
             <i class="fas fa-search"></i>
             <i class="fas fa-paperclip"></i>
@@ -70,7 +77,14 @@
           </div>
         </section>
         <section class="content-main">
-
+          <div class="message" v-for="message in contacts[currentUserIndex].messages">
+            <div :class="{'message-sent': message.status == 'sent',
+                  'message-received' : message.status == 'received'}"
+            >
+              <p> {{ message.message }}</p>
+              <span> {{ message.date}} </span>
+            </div>
+          </div>
         </section>
         <section class="content-footer">
           <i class="far fa-smile"></i>
