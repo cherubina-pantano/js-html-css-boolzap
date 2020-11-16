@@ -10,6 +10,7 @@
   <body>
 
     <div id="app" class="container">
+    <!-- SIDEBAR -->
       <aside class="sidebar">
         <section class="side-overall">
           <div class="main-user">
@@ -18,13 +19,14 @@
             </div>
             <span> {{ user.name }} </span>
           </div>
+    <!-- GRUPPO ICONE -->
           <div class="icons">
             <i class="fas fa-circle-notch"></i>
             <i class="fas fa-comment-alt"></i>
             <i class="fas fa-ellipsis-v"></i>
           </div>
-
         </section>
+    <!-- SEARCH -->
         <section class="side-top">
           <div class="circle-box">
             <i class="fas fa-bell-slash"></i>
@@ -40,10 +42,10 @@
             <input type="text" name="search" class="inp-search" placeholder="Cerca o inizia una nuova chat">
           </div>
 
+    <!-- LISTA CHAT UTENTI -->
           <div class="chats">
-
             <ul class="chats-list">
-              <li class="single-chat"
+              <li class="single-chat active"
                 v-for="(contact, index) in contacts"
                 @click="chageUserChat(index)">
                 <div class="circle-box">
@@ -54,9 +56,8 @@
             </ul>
           </div>
         </section>
-
       </aside>
-
+    <!-- MAIN: CONTENT -->
       <main class="content">
         <section class="content-header">
           <div class="currentChat-user">
@@ -67,15 +68,16 @@
              <h4> {{ contacts[currentUserIndex].name }} </h4>
              <span>Ultimo accesso oggi alle 10.35</span>
             </div>
-
           </div>
-
+      <!-- GRUPPO ICONE -->
           <div class="icons">
             <i class="fas fa-search"></i>
             <i class="fas fa-paperclip"></i>
             <i class="fas fa-ellipsis-v"></i>
           </div>
         </section>
+
+      <!-- CONTENUTO PRINCIPALE: MESSAGGI INVIATI/RICEVUTI -->
         <section class="content-main">
           <div class="message" v-for="message in contacts[currentUserIndex].messages">
             <div :class="{'message-sent': message.status == 'sent',
@@ -86,15 +88,17 @@
             </div>
           </div>
         </section>
+
+    <!-- FOOTER -->
         <section class="content-footer">
           <i class="far fa-smile"></i>
-          <input type="text" name="typing" class="typing" placeholder="Scrivi un messaggio">
+          <input type="text" name="newMessage" class="typing"
+            v-model="newMessage" @keyup.enter="addNewMessage"
+            placeholder="Scrivi un messaggio"
+          >
           <i class="fas fa-microphone"></i>
-
         </section>
-
       </main>
-
     </div>
 
 
@@ -111,6 +115,7 @@
 
     <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.6/dayjs.min.js" charset="utf-8"></script>
   <script src="./js/main.js" charset="utf-8"></script>
   </body>
 </html>

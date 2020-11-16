@@ -10,6 +10,7 @@ var app = new Vue({
             avatar: '_io'
         },
         currentUserIndex: 0,
+        newMessage: '',
         // Elenco contatti
         contacts: [
             {
@@ -31,7 +32,7 @@ var app = new Vue({
                         date: '10/01/2020 16:15:22',
                         message: 'Tutto fatto!',
                         status: 'received'
-                    }
+                    },
                 ],
             },
             {
@@ -100,6 +101,15 @@ var app = new Vue({
     methods: {
       chageUserChat(index) {
         this.currentUserIndex = index;
+      },
+
+      addNewMessage() {
+        if(this.newMessage.trim() !== '') {
+          let newMessageObj = {status: 'sent', message: this.newMessage, date: '16/11/20'};
+          this.contacts[this.currentUserIndex].messages.push(newMessageObj);
+          this.newMessage= '';
+
+        }
       }
     }
 });
