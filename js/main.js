@@ -105,7 +105,7 @@ var app = new Vue({
 
       addNewMessage() {
         if(this.newMessage.trim() !== '') {
-          let newMessageObj = {status: 'sent', message: this.newMessage, date: '16/11/20'};
+          let newMessageObj = {status: 'sent', message: this.newMessage, date: dayjs().format('DD/MM/YYYY HH:mm:ss')};
           this.contacts[this.currentUserIndex].messages.push(newMessageObj);
           this.newMessage= '';
 
