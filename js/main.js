@@ -11,6 +11,7 @@ var app = new Vue({
         },
         currentUserIndex: 0,
         newMessage: '',
+        newMessageReceived: 'ok',
         // Elenco contatti
         contacts: [
             {
@@ -53,7 +54,7 @@ var app = new Vue({
                     {
                         date: '20/03/2020 16:35:00',
                         message: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                        status: 'received'
+                        status: 'sent'
                     }
                 ],
             },
@@ -109,7 +110,14 @@ var app = new Vue({
           this.contacts[this.currentUserIndex].messages.push(newMessageObj);
           this.newMessage= '';
 
+          setTimeout(this.receivedNewMessage, 1000);
         }
-      }
+      },
+
+      receivedNewMessage() {
+          let newMessageReceivedObj = {status: 'received', message: 'ok', date: dayjs().format('DD/MM/YYYY HH:mm:ss')};
+          this.contacts[this.currentUserIndex].messages.push(newMessageReceivedObj);
+      },
+      
     }
 });
