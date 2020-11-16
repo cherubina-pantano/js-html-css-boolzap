@@ -11,7 +11,7 @@ var app = new Vue({
         },
         currentUserIndex: 0,
         newMessage: '',
-        newMessageReceived: 'ok',
+        // newMessageReceived: 'ok',
         // Elenco contatti
         contacts: [
             {
@@ -118,6 +118,6 @@ var app = new Vue({
           let newMessageReceivedObj = {status: 'received', message: 'ok', date: dayjs().format('DD/MM/YYYY HH:mm:ss')};
           this.contacts[this.currentUserIndex].messages.push(newMessageReceivedObj);
       },
-      
+
     }
 });
