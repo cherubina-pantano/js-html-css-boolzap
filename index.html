@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Boolzap</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
 
-    <div id="app" class="container">
+    <div id="app" class="container d-flex">
     <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <section class="side-overall">
-          <div class="main-user">
+      <aside class="sidebar d-flex flex-d-col">
+        <section class="side-overall d-flex align-cent">
+          <div class="main-user d-flex align-cent">
             <div class="circle-box">
               <img :src="`./img/avatar${user.avatar}.jpg`" :alt="user.name">
             </div>
@@ -27,7 +29,7 @@
           </div>
         </section>
     <!-- SEARCH -->
-        <section class="side-top">
+        <section class="side-top d-flex align-cent">
           <div class="circle-box">
             <i class="fas fa-bell-slash"></i>
           </div>
@@ -39,19 +41,20 @@
         <section class="side-chatList">
           <div class="search-chat">
             <i class="fas fa-search"></i>
+
             <input type="text" name="search"
               class="inp-search"
               placeholder="Cerca o inizia una nuova chat"
               v-model="searchUser"
               @keyup="searchNewUserChat"
-
             >
+
           </div>
 
     <!-- LISTA CHAT UTENTI -->
-          <div class="chats">
-            <ul class="chats-list">
-              <li :class="['single-chat', index === currentUserIndex ? 'current' : '']"
+          <div class="chats d-flex">
+            <ul class="chats-list flex-gw">
+              <li :class="['single-chat d-flex', index === currentUserIndex ? 'current' : '']"
                 v-for="(contact, index) in contacts"
                 v-show="contact.visible"
                 @click="chageUserChat(index)">
@@ -65,15 +68,15 @@
         </section>
       </aside>
     <!-- MAIN: CONTENT -->
-      <main class="content">
-        <section class="content-header">
-          <div class="currentChat-user">
+      <main class="content d-flex flex-d-col">
+        <section class="content-header d-flex align-cent">
+          <div class="currentChat-user d-flex align-cent">
             <div class="circle-box">
               <img :src="'./img/avatar' + contacts[currentUserIndex].avatar + '.jpg'" :alt="contacts[currentUserIndex].name">
             </div>
-            <div class="time">
+            <div class="info-current-user d-flex flex-d-col">
              <h4> {{ contacts[currentUserIndex].name }} </h4>
-             <span>Ultimo accesso oggi alle {{ lastAccess()  }} </span>
+             <span>Ultimo accesso oggi alle {{ lastAccess() }} </span>
             </div>
           </div>
       <!-- GRUPPO ICONE -->
@@ -85,8 +88,10 @@
         </section>
 
       <!-- CONTENUTO PRINCIPALE: MESSAGGI INVIATI/RICEVUTI -->
-        <section class="content-main">
-          <div class="message" v-for="message in contacts[currentUserIndex].messages">
+        <section class="content-main flex-gw">
+          <div class="message d-flex flex-d-col"
+              v-for="message in contacts[currentUserIndex].messages"
+          >
 
             <div :class="{'message-sent': message.status == 'sent',
                   'message-received' : message.status == 'received'}"
@@ -99,9 +104,9 @@
         </section>
 
     <!-- FOOTER -->
-        <section class="content-footer">
+        <section class="content-footer d-flex align-cent">
           <i class="far fa-smile"></i>
-          <input type="text" name="newMessage" class="typing"
+          <input type="text" name="newMessage" class="typing flex-gw"
             v-model="newMessage" @keyup.enter="addNewMessage"
             placeholder="Scrivi un messaggio"
           >
