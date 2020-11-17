@@ -12,6 +12,7 @@ var app = new Vue({
         currentUserIndex: 0,
         newMessage: '',
         searchUser:'',
+        dateLastAccess: '',
         // Elenco contatti
         contacts: [
             {
@@ -128,6 +129,16 @@ var app = new Vue({
             contact.visible = true;
           }
         });
+      },
+
+      lastAccess() {
+        this.contacts[this.currentUserIndex].messages.forEach((message) => {
+          if (message.status === 'received') {
+            this.dateLastAccess = message.date
+          }
+        });
+        return this.dateLastAccess;
+
       }
 
     }
