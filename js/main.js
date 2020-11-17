@@ -11,7 +11,7 @@ var app = new Vue({
         },
         currentUserIndex: 0,
         newMessage: '',
-        // newMessageReceived: 'ok',
+        searchUser:'',
         // Elenco contatti
         contacts: [
             {
@@ -118,6 +118,17 @@ var app = new Vue({
           let newMessageReceivedObj = {status: 'received', message: 'ok', date: dayjs().format('DD/MM/YYYY HH:mm:ss')};
           this.contacts[this.currentUserIndex].messages.push(newMessageReceivedObj);
       },
+
+      searchNewUserChat() {
+        this.contacts.forEach((contact) => {
+          if (!contact.name.toLowerCase().includes(this.searchUser.toLowerCase().trim())) {
+            contact.visible = false;
+          }
+          else {
+            contact.visible = true;
+          }
+        });
+      }
 
     }
 });

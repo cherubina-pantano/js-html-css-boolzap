@@ -39,7 +39,13 @@
         <section class="side-chatList">
           <div class="search-chat">
             <i class="fas fa-search"></i>
-            <input type="text" name="search" class="inp-search" placeholder="Cerca o inizia una nuova chat">
+            <input type="text" name="search"
+              class="inp-search"
+              placeholder="Cerca o inizia una nuova chat"
+              v-model="searchUser"
+              @keyup="searchNewUserChat"
+
+            >
           </div>
 
     <!-- LISTA CHAT UTENTI -->
@@ -47,6 +53,7 @@
             <ul class="chats-list">
               <li :class="['single-chat', index === currentUserIndex ? 'current' : '']"
                 v-for="(contact, index) in contacts"
+                v-show="contact.visible"
                 @click="chageUserChat(index)">
                 <div class="circle-box">
                   <img :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
@@ -80,7 +87,7 @@
       <!-- CONTENUTO PRINCIPALE: MESSAGGI INVIATI/RICEVUTI -->
         <section class="content-main">
           <div class="message" v-for="message in contacts[currentUserIndex].messages">
-            
+
             <div :class="{'message-sent': message.status == 'sent',
                   'message-received' : message.status == 'received'}"
             >
